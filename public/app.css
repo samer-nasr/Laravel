@@ -1,0 +1,26 @@
+body { 
+    background-color: white;
+    color: black;
+    max-width: 600px;
+    margin: auto;
+}
+
+p { 
+    line-height: 1.9;
+    font-size: 20px;
+}
+
+h2 { 
+    font-size: 30px;
+}
+
+a { 
+    text-decoration: none;
+    color: black;
+}
+
+article + article { 
+    margin-top: 4rem;
+    border-top: 2px solid black;
+}
+
