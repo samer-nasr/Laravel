@@ -1,26 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Post;
 
 Route::get('/', function () {
-    return view('posts');
+    return view('posts' , [
+        'posts' => Post::all()
+    ]);
 });
 
-Route::get('posts/{post}' , function($slug){
+Route::get('posts/{post}', function ($slug) {
+    //Find a post by its slug and pass it to a view called "post
     
-    $path = __DIR__."/../resources/posts/{$slug}.html";
-    
-    if(! file_exists($path)){ 
-        return redirect('/');
-        // abort(404);
-        // dd('File Does not exist!');
-    }
-
-    $post = file_get_contents($path);
-
-    return view('post', [
-        'post' => $post
+    return view('post' , [
+        'post' => Post::find($slug)
     ]);
+
 })->where('post', '[A-z_\-]+');
 
 
@@ -62,5 +57,3 @@ Route::get('posts/{post}' , function($slug){
 // Route::get('user/{id}/{name}', function ($id,$name) {  
 //     return "id is : ". $id ." ,".  "Name is : ".$name ;  
 // })->where(['id'=>'[0-9]+', 'name'=>'[a-zA-Z]+']);  
-
-
